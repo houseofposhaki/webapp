@@ -1,0 +1,428 @@
+<?php
+$orderno = $this->uri->segment('4');
+// order details //
+
+$ordres = $this->db->query("select * from ordertbl where orderno='$orderno'")->result_array();
+if(!empty($ordres))
+{
+	$grandtot = $ordres[0]['grandtot'];
+	$patientname = $ordres[0]['patientname'];
+	$name = $ordres[0]['name'];
+	$mobile = $ordres[0]['mobile'];
+	$pincode = $ordres[0]['pincode'];
+	$address = $ordres[0]['address'];
+	$ts = $ordres[0]['ts'];
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Invoice</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+
+
+	<!-- CSS | STYLE -->
+	<!--<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Sansita:400,400i,700,700i,800,800i,900,900i" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">-->
+
+		<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/bill/style.css" />
+
+		<body>
+			<div class="container">
+				<div class="tpw_1">
+					<h4>TAX INVOICE</h4>
+				</div>
+				ORIGINAL COPY
+				<div class="tp_1">
+					<div class="tp_inn_1">
+						
+						<h4>INVOICE No: <?=$orderno?></h4>
+					</div>
+
+					<div class="tp_inn_2">
+
+					</div>
+					<div class="tp_inn_3">
+						<h4>DATE: <?php echo date('d-m-Y',strtotime($ts)); ?>
+						</h4>
+
+					</div>
+
+				</div>
+
+
+
+				<div class="tp_3">
+
+					<div class="dep">
+
+						<img align="center" src="<?=base_url()?>assets/sitelogo.png">
+
+					</div>
+
+
+
+
+
+
+					<div class="dep_no">
+						<p>To: <?=$name?> </p>
+						<p>Delivery Address: <?=$address?> </p>
+
+					</div>
+
+					<div class="dep_no_1">
+						<div class="p_6">
+							<p>SI NO</p>
+						</div>
+
+						<div class="p_1">
+							<p>DESCRIPTION</p>
+						</div>
+
+						<div class="p_5">
+							<p>MFR/MKT</p>
+						</div>
+
+						<div class="p_5">
+							<p>HSN/SAC</p>
+						</div>
+
+
+						<div class="p_5">
+							<p>BATCH</p>
+						</div>
+
+
+						<div class="p_5">
+							<p>EXPIRE</p>
+						</div>
+
+
+						<div class="p_3">
+							<p>MRP</p>
+						</div>
+
+
+						<div class="p_5">
+							<p>DISCOUNT</p>
+						</div>
+
+						<div class="p_5">
+							<p>UNIT PRICE</p>
+						</div>
+
+
+
+						<div class="p_2">
+							<p>QUANTITY</p>
+						</div>
+
+						
+
+						
+
+						
+
+						
+						
+						
+
+						
+
+						<div class="p_5">
+							<p>GST%</p>
+						</div>
+
+						<div class="p_4">
+							<p>AMOUMT</p>
+						</div>
+
+
+
+
+					</div>
+
+					<div class="colum-w">
+
+						<?php
+						$mrptot = 0;
+						$i = 1;
+						$cartres = $this->db->query("select * from cart where orderno='$orderno'")->result_array();
+						foreach($cartres as $cartrow){
+							?>
+							<div class="m_6">
+								<?=$i?>
+							</div>
+
+							<div class="main_sede">
+								<?php $productid =  $cartrow['productid'];
+								$pres = $this->db->query("select * from product where id='$productid'")->result_array();
+								if(!empty($pres))
+								{
+									echo $pres[0]['title'];
+								}
+								?>
+							</div>
+
+
+							<div class="m_5">
+								<?php $productid =  $cartrow['productid'];
+								$pres = $this->db->query("select * from product where id='$productid'")->result_array();
+								if(!empty($pres))
+								{
+									echo $pres[0]['manufacture'];
+								}
+								?>
+								
+							</div>
+
+
+							<div class="m_5">
+								<?php $productid =  $cartrow['productid'];
+								$pres = $this->db->query("select * from product where id='$productid'")->result_array();
+								if(!empty($pres))
+								{
+									echo $pres[0]['hsncode'];
+								}
+								?>
+							</div>
+
+
+							<div class="m_5">
+								<?php// echo ($cartrow['ptotgstvalue']/2);?>
+
+								<?php $productid =  $cartrow['productid'];
+								$pres = $this->db->query("select * from product where id='$productid'")->result_array();
+								if(!empty($pres))
+								{
+									echo $pres[0]['batchno'];
+								}
+								?>
+
+							</div>
+
+							<div class="m_5">
+								<?php $productid =  $cartrow['productid'];
+								$pres = $this->db->query("select * from product where id='$productid'")->result_array();
+								if(!empty($pres))
+								{
+									$expdt = $pres[0]['expiredate'];
+									echo date('d/m',strtotime($expdt));
+								}
+								?>
+
+							</div>
+							<div class="main_sede_2">
+								<?php $productid =  $cartrow['productid'];
+								$pres = $this->db->query("select * from product where id='$productid'")->result_array();
+								if(!empty($pres))
+								{
+									echo $pres[0]['normalprice'];
+								}
+								?>
+							</div>
+
+							<div class="m_5">
+								
+								<?php $productid =  $cartrow['productid'];
+								$pres = $this->db->query("select * from product where id='$productid'")->result_array();
+								if(!empty($pres))
+								{
+									$mrp =  $pres[0]['normalprice'];
+									$actualprice = $cartrow['productprice'];
+									 $disc = ($mrp - $actualprice);
+									 echo round($disc,2);
+								}
+								?>
+							</div>
+
+
+							<div class="m_5">
+								<?php echo $cartrow['productprice'];?>
+							</div>
+
+
+
+							<div class="main_sede_1">
+								<?php echo $cartrow['qty'];?>
+							</div>
+
+							
+
+							
+
+							
+
+							
+							
+
+							
+
+							
+
+							<div class="m_5">
+								<?php $productid =  $cartrow['productid'];
+								$pres = $this->db->query("select * from product where id='$productid'")->result_array();
+								if(!empty($pres))
+								{
+									echo ($pres[0]['gstpercent']);
+								}
+								?>
+							</div>
+
+							<div class="main_sede_3">
+								<?php echo $cartrow['total'];?>
+							</div>
+
+
+							<?php 
+
+							$productid =  $cartrow['productid'];
+								$pres = $this->db->query("select * from product where id='$productid'")->result_array();
+								if(!empty($pres))
+								{
+									$mrptot = $mrptot+$pres[0]['normalprice'];
+								}
+
+								$i++;  
+
+							} ?>
+
+
+
+
+
+						</div>
+						<div class="ruppee">
+							<!-- <p>Ruppee(word):
+
+							</p> -->
+							<span class="rec"><!-- Received --></span>
+							<br>
+							<p style="margin-bottom: 11px;">Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+
+
+							<table width="100%" border="1" cellspacing="0">
+								<tr>
+									<td style="font-size: 12px;text-align: center;">Taxable Amt</td>
+									<td style="font-size: 12px;text-align: center;">SGST%</td>
+									<td style="font-size: 12px;text-align: center;">SGST Amt</td>
+									<td style="font-size: 12px;text-align: center;">CGST%</td>
+									<td style="font-size: 12px;text-align: center;">CGST Amt</td>
+								</tr>
+
+								<?php 
+								$gsttblres = $this->db->query("select * from cart  where orderno='$orderno' group by gstpercentage")->result_array();
+								foreach($gsttblres as $gsttblrow) {
+								?>
+								<tr>
+									<td style="font-size: 12px;text-align: center;padding: 3px;"><?=$gsttblrow['total']?></td>
+									<td style="font-size: 12px;text-align: center;padding: 3px;"><?=($gsttblrow['gstpercentage']/2)?></td>
+									<td style="font-size: 12px;text-align: center;padding: 3px;"><?=($gsttblrow['ptotgstvalue']/2)?></td>
+									<td style="font-size: 12px;text-align: center;padding: 3px;"><?=($gsttblrow['gstpercentage']/2)?></td>
+									<td style="font-size: 12px;text-align: center;padding: 3px;"><?=($gsttblrow['ptotgstvalue']/2)?></td>
+									
+								</tr>
+							<?php } ?>
+								
+							</table>	
+
+
+
+
+
+
+
+						</div>
+
+						<div class="total_amtt">
+
+							<div class="tt">
+								<p><b>MRP Total</b></p>
+							</div>
+							<div class="tt">
+								<p>Savings
+									<?php
+									$disdiffer = ($mrptot-$grandtot);
+									$dismultiply = ($disdiffer*100);
+									$disdevide = ($dismultiply/$mrptot);
+									echo "@". round($disdevide,2)."%" ; 
+									?>
+								</p>
+							</div>
+							<div class="tt">
+								<p>Sub Total</p>
+							</div>
+							<!-- <div class="tt">
+								<p>Total Amount</p>
+							</div>
+							<div class="tt tt_1">
+								<p>Round Off</p>
+							</div> -->
+
+						</div>
+
+						<div class="tot_1">
+
+
+
+							<div class="amm">
+								<p>
+									<?php echo $mrptot; ?>
+								</p>
+							</div>
+							<div class="amm">
+								<p>
+									<?php 
+									$disdiffer = ($mrptot-$grandtot);
+									echo $disdiffer; ?>
+								</p>
+							</div>
+
+							<div class="amm">
+								<p>
+									<?php echo $grandtot; ?>
+								</p>
+							</div>
+								<!-- <div class="amm">
+									<p><?php
+						$cartres = $this->db->query("select sum(ptotgstvalue) as totgstval from cart where orderno='$orderno'")->result_array();
+						if(!empty($cartres))
+						{
+							echo $cartres[0]['totgstval'];
+						}
+									 ?>
+									 	
+									 </p>
+								</div> -->
+								<!-- <div class="amm">
+									<p>qq</p>
+								</div>
+								<div class="amm amm_1">
+									<p>rr</p>
+								</div> -->
+							</div>
+
+						</div>
+
+
+						<!-- <div class="footer">
+							<p>IT Hub Technology</p>
+							<p><b>AUTHORISED SIGNATORY</b></p>
+						</div> -->
+
+
+					</div>
+
+
+
+
+				</body>
+
+				</html>

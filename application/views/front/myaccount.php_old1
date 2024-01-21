@@ -1,0 +1,235 @@
+
+<?php 
+
+  $userid = $this->session->userdata['logged_in']['id'];
+  $userdetails = $this->db->query("select * from user where id='$userid'")->result_array();
+  if(!empty($userdetails))
+  {
+      $fullname = $userdetails[0]['fullname'];    
+      $username = $userdetails[0]['username'];    
+      $mobile = $userdetails[0]['mobile'];    
+      $address = $userdetails[0]['address'];    
+      $password = base64_decode($userdetails[0]['password']);    
+  }
+?>
+
+
+  <!-- Main Wrapper Start -->
+
+
+
+  <div class="section_sin">
+
+
+
+    <div class="imgs-wrapper">
+
+
+
+      <img src="<?=base_url();?>assets/front/images/1.png" alt="veg" class="d-none d-lg-block">
+
+
+
+      <img src="<?=base_url();?>assets/front/images/14.png" alt="veg" class="d-none d-lg-block">
+
+
+
+    </div>
+
+
+
+    <div class="container">
+
+
+
+      <div class="andro_auth-wrapper">
+
+
+
+
+
+<!-- 
+
+        <div class="andro_auth-description bg-cover bg-center dark-overlay dark-overlay-2" 
+
+
+
+        style="background-image: url('<?=base_url();?>assets/front/auth.png')">
+
+
+
+        
+
+
+
+        </div> -->
+
+
+
+        <div class="andro_auth-form">
+
+
+
+
+
+
+
+          <h2>My Account</h2>
+
+
+
+
+
+
+
+          <form method="post" action="<?php echo base_url();?>Home/accountupdate" name="">
+
+
+
+
+
+
+
+            <div class="form-group">
+
+
+              <input type="hidden" name="userid" value="<?=$userid?>">
+              <input type="text" class="form-control" placeholder="Full Name" name="fullname" required value="<?=$fullname?>">
+
+
+
+            </div>
+
+
+
+            <div class="form-group">
+
+
+
+              <input type="email" class="form-control form-control-light" placeholder="Email Address" required 
+              name="username" value="<?=$username?>">
+
+
+
+            </div>
+
+
+            <div class="form-group">
+              <input type="number" class="form-control form-control-light" placeholder="Phone Number" readonly required 
+              name="mobile" maxlength="10" minlength="10" value="<?=$mobile?>">
+            </div>
+
+
+            <div class="form-group">
+             <textarea name="address" class="form-control"><?php echo $address;?></textarea>
+            </div>
+
+
+
+
+           
+
+
+            <button type="submit" class="andro_btn-custom primary" name="signup">Update</button>
+
+
+
+
+
+
+
+            <!-- <div class="andro_auth-seperator">
+
+
+
+              <span>OR</span>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="andro_social-login">
+
+
+
+              <button type="button" class="andro_social-login-btn facebook"> Continue with Facebook </button>
+
+
+
+              <button type="button" class="andro_social-login-btn google"> Continue with Google</button>
+
+
+
+            </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </form>
+
+
+
+           <?php if($this->session->flashdata('del')): ?>
+
+
+            <div class="alert alert-danger" role="alert" style="margin-top: 25px;">
+
+
+              <?php echo $this->session->flashdata('del'); ?>
+
+
+            </div>
+
+
+          <?php endif; ?>
+
+
+
+        </div>
+
+
+
+
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+  <!-- Main Wrapper End --> 
+
+
+
+  
+
+
+
+
+
+
+

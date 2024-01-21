@@ -1,0 +1,827 @@
+
+<!-- End Slider Section -->
+<section class="banner_sec">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
+    <!-- Indicators --> 
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+    </ol> 
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <div class="overlay"></div>
+        <img src="<?=base_url()?>assets/front/images/slider1.jpg" alt="">
+        <!-- <div class="carousel-caption">
+          <div class="caption_cont">
+            <div class="top_slider_title">Lorem Ipsum is simply dummy text of the printing </div>
+            <a href="#" class="slider_btn">Shop Now</a> </div>
+        </div> -->
+      </div>
+      <div class="item">
+        <div class="overlay"></div>
+        <img src="<?=base_url()?>assets/front/images/slider1.jpg" alt="">
+        <!-- <div class="carousel-caption">
+          <div class="caption_cont">
+            <div class="top_slider_title">Lorem Ipsum is simply dummy text of the printing </div>
+            <a href="#" class="slider_btn">Shop Now</a> </div>
+        </div> -->
+      </div>
+    </div>
+    <!-- Left and right controls --> 
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
+</section>
+<section class="bbacass">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="produt_hed">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="owl-carousel same-nav owl-theme products-slider1">
+                        <div class="item">
+                            <div class="product-box common-cart-box">
+                                    <div class="product-img common-cart-img">
+                                        <img src="<?=base_url()?>assets/front/images/offer/discount_offrer01.jpg" alt="product-img">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-box common-cart-box">
+                                <div class="product-img common-cart-img">
+                                    <img src="<?=base_url()?>assets/front/images/offer/discount_offrer02.jpg" alt="product-img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-box common-cart-box">
+                                <div class="product-img common-cart-img">
+                                    <img src="<?=base_url()?>assets/front/images/offer/discount_offrer03.jpg" alt="product-img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-box common-cart-box">
+                                <div class="product-img common-cart-img">
+                                    <img src="<?=base_url()?>assets/front/images/offer/discount_offrer04.jpg" alt="product-img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-box common-cart-box">
+                                <div class="product-img common-cart-img">
+                                    <img src="<?=base_url()?>assets/front/images/offer/discount_offrer05.jpg" alt="product-img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="product-box common-cart-box">
+                                <div class="product-img common-cart-img">
+                                    <img src="<?=base_url()?>assets/front/images/offer/discount_offrer06.jpg" alt="product-img">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <div class="produt_hed">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="title text-center">
+                            <h4>Mineral Supplements</h4>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="owl-carousel same-nav owl-theme products-slider7">
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/catgory/01jk.png" alt="product-img">
+                                        </div>
+                                        <div class="product-info text-center">Multivitamins</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/catgory/02jk.png" alt="product-img">
+                                        </div>
+                                        <div class="product-info text-center">Iron</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/catgory/03jk.png" alt="product-img">
+                                        </div>
+                                        <div class="product-info text-center">Zinc</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/catgory/04jk.png" alt="product-img">
+                                        </div>
+                                        <div class="product-info text-center">Calcium</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/catgory/05jk.png" alt="product-img">
+                                        </div>
+                                        <div class="product-info text-center">Magnesium</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/catgory/01jk.png" alt="product-img">
+                                        </div>
+                                        <div class="product-info text-center">Baby Care</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <div class="produt_hed">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="title text-center">
+                            <h4>Sunscreen Lotions</h4>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="owl-carousel same-nav owl-theme products-slider2">
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/pest/pest_02.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info common-cart-info text-center">
+                                            <a href="product-detail.html" class="cart-name">VLCC 3D Youth Boost SPF 40 Sunscreen Gel Creme 100 gm</a>
+                                            <p class="cart-price"><del>Rs 90.00</del>Rs 78.00</p>
+                                        </div>
+                                          <div class="hover-option text-center">
+                                             <div class="add-cart-btn">
+                                                <a href="#" class="btn btn-primary">Add To Cart</a>
+                                              </div>
+                                           </div>
+                                    </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/pest/pest_02.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info common-cart-info text-center">
+                                            <a href="product-detail.html" class="cart-name">VLCC 3D Youth Boost SPF 40 Sunscreen Gel Creme 100 gm</a>
+                                            <p class="cart-price"><del>Rs 90.00</del>Rs 78.00</p>
+                                        </div>
+                                        <div class="hover-option text-center">
+                                             <div class="add-cart-btn">
+                                                <a href="#" class="btn btn-primary">Add To Cart</a>
+                                              </div>
+                                           </div>
+                                    </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/pest/pest_03.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info common-cart-info text-center">
+                                            <a href="product-detail.html" class="cart-name">VLCC 3D Youth Boost SPF 40 Sunscreen Gel Creme 100 gm</a>
+                                            <p class="cart-price"><del>Rs 90.00</del>Rs 78.00</p>
+                                        </div>
+                                        <div class="hover-option text-center">
+                                             <div class="add-cart-btn">
+                                                <a href="#" class="btn btn-primary">Add To Cart</a>
+                                              </div>
+                                           </div>
+                                    </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/pest/pest_04.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info common-cart-info text-center">
+                                            <a href="product-detail.html" class="cart-name">VLCC 3D Youth Boost SPF 40 Sunscreen Gel Creme 100 gm</a>
+                                            <p class="cart-price"><del>Rs 90.00</del>Rs 78.00</p>
+                                        </div>
+                                        <div class="hover-option text-center">
+                                             <div class="add-cart-btn">
+                                                <a href="#" class="btn btn-primary">Add To Cart</a>
+                                              </div>
+                                           </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="produt_hed">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="title text-center">
+                            <h4>Popular Categories</h4>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="owl-carousel same-nav owl-theme products-slider2">
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/catgory/catg01.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info text-center">Covid Essentials</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/catgory/catg02.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info text-center">Diabetes</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/catgory/catg03.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info text-center">Homeopathy</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/catgory/catg04.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info text-center">Ayurvedic</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/catgory/catg05.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info text-center">Vitamins And Supplements</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/catgory/catg06.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info text-center">Baby Care</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="produt_hed">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="title text-center">
+                            <h4>Covid Essentials</h4>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="owl-carousel same-nav owl-theme products-slider2">
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/pest/covid01.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info common-cart-info text-center">
+                                            <a href="product-detail.html" class="cart-name">UniMask Anti-Viral Reusable Cloth Mask - Navy</a>
+                                            <p class="cart-price"><del>Rs 90.00</del>Rs 78.00</p>
+                                        </div>
+                                        <div class="hover-option text-center">
+                                             <div class="add-cart-btn">
+                                                <a href="#" class="btn btn-primary">Add To Cart</a>
+                                              </div>
+                                           </div>
+                                    </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/pest/covid02.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info common-cart-info text-center">
+                                            <a href="product-detail.html" class="cart-name">UniMask Anti-Viral Reusable Cloth Mask - Navy</a>
+                                            <p class="cart-price"><del>Rs 90.00</del>Rs 78.00</p>
+                                        </div>
+                                        <div class="hover-option text-center">
+                                             <div class="add-cart-btn">
+                                                <a href="#" class="btn btn-primary">Add To Cart</a>
+                                              </div>
+                                           </div>
+                                    </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/pest/covid03.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info common-cart-info text-center">
+                                            <a href="product-detail.html" class="cart-name">UniMask Anti-Viral Reusable Cloth Mask - Navy</a>
+                                            <p class="cart-price"><del>Rs 90.00</del>Rs 78.00</p>
+                                        </div>
+                                        <div class="hover-option text-center">
+                                             <div class="add-cart-btn">
+                                                <a href="#" class="btn btn-primary">Add To Cart</a>
+                                              </div>
+                                           </div>
+                                    </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/pest/covid04.jpg" alt="product-img">
+                                        </div>
+                                        <div class="product-info common-cart-info text-center">
+                                            <a href="product-detail.html" class="cart-name">UniMask Anti-Viral Reusable Cloth Mask - Navy</a>
+                                            <p class="cart-price"><del>Rs 90.00</del>Rs 78.00</p>
+                                        </div>
+                                        <div class="hover-option text-center">
+                                             <div class="add-cart-btn">
+                                                <a href="#" class="btn btn-primary">Add To Cart</a>
+                                              </div>
+                                           </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            <!-- <div class="row">
+               <div class="col-md-12">
+                    <div class="testimonial-section pt_small pb_small">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="carousel_slide1 nav-style-2 owl-carousel owl-theme" data-margin="30" data-dots="true" data-autoplay="false" data-nav="false" data-loop="true">
+                                    <div class="item">
+                                        <div class="fancy-box">
+                                            <div class="fancy-img">
+                                                <img src="<?=base_url()?>assets/front/images/testimonial-img-1.jpg" alt="testimonial-img">
+                                            </div>
+                                            <div class="fancy-wrap">
+                                                <h5 class="testimonial-title"><a href="#">Williamson</a>
+                                                    <small class="post">Web Developer</small>
+                                                </h5>
+                                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="fancy-box">
+                                            <div class="fancy-img">
+                                                <img src="<?=base_url()?>assets/front/images/testimonial-img-2.jpg" alt="testimonial-img">
+                                            </div>
+                                            <div class="fancy-wrap">
+                                                <h5 class="testimonial-title"><a href="#">Williamson</a>
+                                                    <small class="post">Web Developer</small>
+                                                </h5>
+                                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="fancy-box">
+                                            <div class="fancy-img">
+                                                <img src="<?=base_url()?>assets/front/images/testimonial-img-3.jpg" alt="testimonial-img">
+                                            </div>
+                                            <div class="fancy-wrap">
+                                                <h5 class="testimonial-title"><a href="#">Williamson</a>
+                                                    <small class="post">Web Developer</small>
+                                                </h5>
+                                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="fancy-box">
+                                            <div class="fancy-img">
+                                                <img src="<?=base_url()?>assets/front/images/testimonial-img-1.jpg" alt="testimonial-img">
+                                            </div>
+                                            <div class="fancy-wrap">
+                                                <h5 class="testimonial-title"><a href="#">Williamson</a>
+                                                    <small class="post">Web Developer</small>
+                                                </h5>
+                                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="fancy-box">
+                                            <div class="fancy-img">
+                                                <img src="<?=base_url()?>assets/front/images/testimonial-img-2.jpg" alt="testimonial-img">
+                                            </div>
+                                            <div class="fancy-wrap">
+                                                <h5 class="testimonial-title"><a href="#">Williamson</a>
+                                                    <small class="post">Web Developer</small>
+                                                </h5>
+                                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="fancy-box">
+                                            <div class="fancy-img">
+                                                <img src="<?=base_url()?>assets/front/images/testimonial-img-3.jpg" alt="testimonial-img">
+                                            </div>
+                                            <div class="fancy-wrap">
+                                                <h5 class="testimonial-title"><a href="#">Williamson</a>
+                                                    <small class="post">Web Developer</small>
+                                                </h5>
+                                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam amet animi blanditiis consequatur debitis dicta distinctio.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        <div class="row">
+        <div class="col-md-12">
+            <div class="produt_hed">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="title text-center">
+                            <h4>Radiology Tests | Upto 80% off</h4>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="owl-carousel same-nav owl-theme sliderdiscount">
+                            <div class="item">
+                                <div class="discount_box">
+                                    <a href="#" class="discun_warrapert">
+                                        <div class="hi76">
+                                            <div class="sytlenamre">X - Ray Chest PA View</div>
+                                            <div class="style__safe-tag___2TR_v">
+                                                <div class="style__safe___3Ve-w">
+                                                    <img class="style__safe-tag___DEH5F" src="images/safe_bjisiz.svg" alt="Safe">
+                                                    <span>SAFE</span>
+                                                </div>
+                                            </div>
+                                            <div class="style__test-div___1BsZc">
+                                                <div class="style__pack-size___1t7wZ">
+                                                    Provided By 26 Labs
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="style__price-div-fixed-height___uOoIk">
+                                            <div class="style__fixed-height___mHyf2">
+                                                <div class="style__discount-percent___1L59S style__mobile-view___11fMi">40% Off<!-- --> <!-- --> </div>
+                                            </div>
+                                            <div class="style__mrp-fixed-height___34vXp"><div>
+                                                <div class="style__strike-price___2HbVV">
+                                                    ₹<!-- -->350
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="style__discount-price___1SkS5">
+                                            ₹<!-- -->210
+                                        </div>
+                                      </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="discount_box">
+                                    <a href="#" class="discun_warrapert">
+                                        <div class="hi76">
+                                            <div class="sytlenamre">X - Ray Chest PA View</div>
+                                            <div class="style__safe-tag___2TR_v">
+                                                <div class="style__safe___3Ve-w">
+                                                    <img class="style__safe-tag___DEH5F" src="images/safe_bjisiz.svg" alt="Safe">
+                                                    <span>SAFE</span>
+                                                </div>
+                                            </div>
+                                            <div class="style__test-div___1BsZc">
+                                                <div class="style__pack-size___1t7wZ">
+                                                    Provided By 26 Labs
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="style__price-div-fixed-height___uOoIk">
+                                            <div class="style__fixed-height___mHyf2">
+                                                <div class="style__discount-percent___1L59S style__mobile-view___11fMi">40% Off<!-- --> <!-- --> </div>
+                                            </div>
+                                            <div class="style__mrp-fixed-height___34vXp"><div>
+                                                <div class="style__strike-price___2HbVV">
+                                                    ₹<!-- -->350
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="style__discount-price___1SkS5">
+                                            ₹<!-- -->210
+                                        </div>
+                                      </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="discount_box">
+                                    <a href="#" class="discun_warrapert">
+                                        <div class="hi76">
+                                            <div class="sytlenamre">X - Ray Chest PA View</div>
+                                            <div class="style__safe-tag___2TR_v">
+                                                <div class="style__safe___3Ve-w">
+                                                    <img class="style__safe-tag___DEH5F" src="images/safe_bjisiz.svg" alt="Safe">
+                                                    <span>SAFE</span>
+                                                </div>
+                                            </div>
+                                            <div class="style__test-div___1BsZc">
+                                                <div class="style__pack-size___1t7wZ">
+                                                    Provided By 26 Labs
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="style__price-div-fixed-height___uOoIk">
+                                            <div class="style__fixed-height___mHyf2">
+                                                <div class="style__discount-percent___1L59S style__mobile-view___11fMi">40% Off<!-- --> <!-- --> </div>
+                                            </div>
+                                            <div class="style__mrp-fixed-height___34vXp"><div>
+                                                <div class="style__strike-price___2HbVV">
+                                                    ₹<!-- -->350
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="style__discount-price___1SkS5">
+                                            ₹<!-- -->210
+                                        </div>
+                                      </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </div>
+    
+    </div>
+</section> 
+    <section class="main_slide_bootm bbacass">
+      <div class="main-banner-slider">
+        <div class="container-fluid">
+            <div class="row">
+            <div class="col-12">
+                        <div class="title text-center">
+                            <h4>Top Brands</h4>
+                        </div>
+                    </div> 
+         </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="top_brand-bg">
+                <div class="owl-carousel productlist5 owl-theme">
+                  <div class="item">
+                    <div class="offer-item">
+                      <div class="offer-item-img">
+                        <div class="gambo-overlay"></div>
+                        <img src="<?=base_url()?>assets/front/images/helthlist/brand_pro1.jpg" alt=""> </div>
+                      <div class="offer-text-dt">
+                        <div class="offer-top-text-banner brandnamearea text-center"> 
+                        <img src="<?=base_url()?>assets/front/images/helthlist/b_name1.jpg" alt="" style="width:50%;margin:auto;"> </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="offer-item">
+                      <div class="offer-item-img">
+                        <div class="gambo-overlay"></div>
+                        <img src="<?=base_url()?>assets/front/images/helthlist/brand_pro2.jpg" alt=""> </div>
+                      <div class="offer-text-dt">
+                        <div class="offer-top-text-banner brandnamearea text-center"> 
+                        <img src="<?=base_url()?>assets/front/images/helthlist/b_name2.jpg" alt="" style="width:50%;margin:auto;"> </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="offer-item">
+                      <div class="offer-item-img">
+                        <div class="gambo-overlay"></div>
+                        <img src="<?=base_url()?>assets/front/images/helthlist/brand_pro3.jpg" alt=""> </div>
+                      <div class="offer-text-dt">
+                        <div class="offer-top-text-banner brandnamearea text-center"> 
+                        <img src="<?=base_url()?>assets/front/images/helthlist/b_name2.jpg" alt="" style="width:50%;margin:auto;"> </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> 
+    <section class="main_slide_bootm bbacass padtopinng">
+      <div class="main-banner-slider">
+        <div class="container-fluid">
+            <div class="row">
+                    <div class="col-12">
+                        <div class="title text-center">
+                            <h4>Health Concerns</h4>
+                        </div>
+                    </div> 
+         </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="owl-carousel productlist5 owl-theme">
+                <div class="item">
+                  <div class="offer-item">
+                    <div class="offer-item-img">
+                      <div class="gambo-overlay"></div>
+                      <img src="<?=base_url()?>assets/front/images/helthlist/h1.jpg" alt=""> </div>
+                    <div class="offer-text-dt">
+                      <div class="offer-top-text-banner">
+                        <p>6% Off</p>
+                        <div class="top-text-1">Buy More & Save More</div>
+                        <span>Fresh Vegetables</span> </div>
+                      <a href="#" class="Offer-shop-btn hover-btn">Shop Now</a> </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="offer-item">
+                    <div class="offer-item-img">
+                      <div class="gambo-overlay"></div>
+                      <img src="<?=base_url()?>assets/front/images/helthlist/h2.jpg" alt=""> </div>
+                    <div class="offer-text-dt">
+                      <div class="offer-top-text-banner">
+                        <p>5% Off</p>
+                        <div class="top-text-1">Buy More & Save More</div>
+                        <span>Fresh Fruits</span> </div>
+                      <a href="#" class="Offer-shop-btn hover-btn">Shop Now</a> </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="offer-item">
+                    <div class="offer-item-img">
+                      <div class="gambo-overlay"></div>
+                      <img src="<?=base_url()?>assets/front/images/helthlist/h3.jpg" alt=""> </div>
+                    <div class="offer-text-dt">
+                      <div class="offer-top-text-banner">
+                        <p>3% Off</p>
+                        <div class="top-text-1">Hot Deals on New Items</div>
+                        <span>Daily Essentials Eggs & Dairy</span> </div>
+                      <a href="#" class="Offer-shop-btn hover-btn">Shop Now</a> </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<section class="bbacass padtopinng">
+    <div class="container-fluid">
+     <div class="row">
+        <div class="col-md-12">
+            <div class="produt_hed">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="title text-center">
+                            <h4>Ayurveda</h4>
+                        </div>
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="owl-carousel same-nav owl-theme productlist5">
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/helthlist/aur01.jpg" alt="product-img">
+                                        </div>
+                                        <div class="tikfgh">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/helthlist/aur02.jpg" alt="product-img">
+                                        </div>
+                                        <div class="tikfgh">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/helthlist/aur03.jpg" alt="product-img">
+                                        </div>
+                                        <div class="tikfgh">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="product-box common-cart-box">
+                                        <div class="product-img common-cart-img">
+                                            <img src="<?=base_url()?>assets/front/images/helthlist/aur04.jpg" alt="product-img">
+                                        </div>
+                                        <div class="tikfgh">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-md-12 ">
+                <div class="facility-style-2">
+                    <div class="facility-box">
+                        <div class="facility-inner">
+                            <div class="fb-icon">
+                                <i class="fa fa-truck"></i>
+                            </div>
+                            <div class="fb-text">
+                                <h5>FREE DELIVERY</h5>
+                                <span>Worldwide</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="facility-box">
+                        <div class="facility-inner">
+                            <div class="fb-icon">
+                                <i class="fa fa-headphones"></i>
+                            </div>
+                            <div class="fb-text">
+                                <h5>24/ 7 SUPPORT</h5>
+                                <span>Customer Support</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="facility-box">
+                        <div class="facility-inner">
+                            <div class="fb-icon">
+                                <i class="fab fa-cc-mastercard"></i>
+                            </div>
+                            <div class="fb-text">
+                                <h5>PAYMENT</h5>
+                                <span>Secure System</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="facility-box">
+                        <div class="facility-inner">
+                            <div class="fb-icon">
+                                <i class="fa fa-trophy"></i>
+                            </div>
+                            <div class="fb-text">
+                                <h5>TRUSTED</h5>
+                                <span>enuine Products</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+

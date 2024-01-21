@@ -1,0 +1,340 @@
+ 
+html , body, h1, h2, h3, h4, h5, label, p{
+  	font-family: Tahoma, Geneva, sans-serif !important;
+}
+h4
+{
+	font-size:14px;
+}
+.container
+{
+	width:1000px;
+	margin:0 auto;
+}
+.tp_1
+{
+	width:100%;
+	float:left;margin-top:0px;
+}
+
+.tp_inn_1
+{
+	width:50%;
+	float:left;
+	
+}
+.tp_1 h4
+{
+	margin-top:0
+}
+.tp_inn_2
+{
+	width:33.3%;
+	float:left;
+	text-align:center;
+}
+.tp_inn_2 h4
+{
+	margin:0;
+	text-decoration:underline;
+}
+
+  
+  .tp_inn_2 p
+{
+	margin:0;
+}
+.tp_inn_3
+{
+	width:50%;
+	float:left;
+	text-align:right;
+}
+
+.tp_2
+{
+	width:100%;
+	float:left;
+	margin:5px 0 10px 0;
+	border:1px solid #000;
+}
+
+.tp_in_4
+{
+	width:70%;
+	float:left;
+	padding:0 10px;
+	text-align:center;
+}
+.tp_in_5
+{
+	width:25%;
+	float:left;
+	padding:0 10px;
+	border-left:1px solid #000;
+	min-height: 136px;
+}
+.note
+{
+	width:100%;
+	float:left;
+}
+.tp_3
+{
+	width:100%;
+	float:left;
+	border:1px solid #000;
+}
+.dep
+{
+	width:49%;
+	float:left;
+}
+p
+{
+	font-size:14px;
+	margin: 5px 0;
+}
+.dep p
+{
+	width:100%;
+	float:left;
+	margin:2px 0px 2px 10px
+}
+.tp_in_4 h4 {
+	margin: 5px 0 0 0;
+}
+.dep_no
+{
+	width:50%;
+	float:left;
+	border-left:1px solid #000;
+	text-align:center;
+	min-height: 125px;
+}
+.tp_in_4 h1
+{
+	font-family: 'Lobster', cursive !important;
+	font-size:50px;
+	margin-bottom:10px;
+	margin-top:10px;
+	font-style:italic
+}
+.dep_no p
+{
+	margin:2px 0px 2px 10px
+}
+.dep_no_1
+{
+	width:100%;
+	float:left;
+	border-top:1px solid #000;
+	border-bottom:1px solid #000;
+	
+}
+.dep_no_1 p
+{
+	margin:5px 0
+}
+.p_1
+{
+	width:29.9%;
+	float:left;
+	text-align:center;border-right: 1px solid #000;
+}
+.p_2
+{
+	width:6%;
+	float:left;
+	text-align:center;
+	border-left:1px solid #000;
+	border-right:1px solid #000;
+}
+.p_3
+{
+	width:6%;
+	float:left;
+	text-align:center;
+	border-right:1px solid #000;
+}
+.p_4
+{
+	width:11%;
+	float:left;
+	text-align:center;
+}
+.main_sede
+{
+	width:30%;
+	float:left;
+    font-size: 12px;overflow: hidden;
+    height: 14px;
+	
+}
+.main_sede p
+{
+	margin-left:10px;
+}
+.main_sede_1
+{
+	width:6.1%;
+	float:left;
+	text-align:center;
+	
+}
+.main_sede_2
+{
+	width:6.1%;
+	float:left;
+	text-align:center;font-size: 12px;
+	
+	
+}
+
+.dep_no_1 p
+{
+	font-size:9px;
+	font-weight:bold;
+}
+.main_sede_3
+{
+	width:11%;
+	float:left;
+	text-align:center;
+	
+}
+.main_sede_3 p
+{
+	margin-right:10px;
+}
+.ruppee
+{
+	width:60.1%;
+	float:left;
+	border-top:1px solid #000;
+	border-right:1px solid #000;	min-height:110px;
+}
+.ruppee p
+{
+	margin:0px 0 0 10px;
+	
+}
+.total_amtt
+{
+	width:15%;float:left;
+	text-align:center;
+	min-height:20px;
+	border-top:1px solid #000;
+}
+.total_amtt p
+{
+	margin:5px;
+	
+}
+.tt
+{
+	width:100%;
+	float:left;
+	text-align:center;
+	border-bottom:1px solid #000;
+	border-right:1px solid #000;
+	min-height:26px;
+}
+.tt_1
+{
+	border-bottom:0 !important;
+}
+.amm_1
+{
+	border-bottom:0 !important;
+}
+.tot_1 p
+{
+	margin:5px;
+	
+}
+.tot_1
+{
+	width:24.8%;
+	float:left;
+	text-align:right;
+	min-height:20px;
+	border-top:1px solid #000;
+}
+.amm
+{
+	width:100%;
+	min-height:26px;
+	float:left;
+	text-align:right;
+	border-bottom:1px solid #000;
+}	
+.amm p
+{
+
+margin-right:15px;
+}	
+.footer
+{
+	width:100%;
+	float:left;
+	margin-top:0px;
+	margin-bottom:20px;
+	text-align: right;
+}
+.f_1
+{
+	width:50%;
+	float:left;
+	text-align:left;
+}
+.f_2
+{
+	width:50%;
+	float:right;
+	text-align:right
+}
+
+
+/*snehasish start here[3.9.17]*/
+
+.p_5 {
+    width: 6%;
+    float: left;
+    text-align: center;
+    border-right: 1px solid #000;
+}
+.p_6 {
+    width: 4%;
+    float: left;
+    text-align: center;
+    border-right: 1px solid #000;
+}
+.m_6 {
+    width: 4%;
+    float: left;
+	text-align: center;font-size: 12px;
+	
+}
+.m_5 {
+    width: 6.1%;
+    float: left;
+	text-align:center;
+    font-size: 12px;
+	
+    
+}
+.tpw_1{text-align:center; width:100%;}
+.tpw_1 h4{ margin:0;}
+.rec{float: right;
+    position: relative;
+    top: -13px;
+    right: 7px;}
+.colum-w{ width:100%; float:left;}
+.colum-w{ min-height:265px;}
+.m_6 p{ min-height: 20px; }
+.main_sede p{ min-height: 20px; font-size: 12px;}
+.main_sede_1 p{ min-height: 20px; font-size: 12px;} 
+.main_sede_2 p{ min-height: 20px; font-size: 12px;}
+.m_5 p{ min-height: 20px; font-size: 12px;}
+.main_sede_3 p{ min-height: 20px; font-size: 12px;}

@@ -1,0 +1,1209 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Managepage extends CI_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+
+	}
+	// page content add start //
+
+	public function pgcontentadd()
+	{	
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$id=$this->uri->segment(4);
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['pgid'] = $id;
+		$data['res'] = $this->db->query("select * from pgcontent where pgid='".$id."' ")->result_array();
+		$this->load->view('admin/master/pages/pgcontentadd',$data);
+		$this->load->view('admin/includes/footer');
+
+	}
+
+
+	public function pgcontentsave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		if($this->input->post('save'))
+		{
+			$pgid = trim($this->input->post('pgid'));
+			$metaname = trim($this->input->post('metaname'));
+			$metadesc = trim($this->input->post('metadesc'));
+			$title = trim($this->input->post('title'));
+			$description = trim($this->input->post('description'));
+			$oldid = trim($this->input->post('oldid'));
+			$oldiconimgae = trim($this->input->post('oldiconimgae'));
+			
+			if(!empty($_FILES['iconimgae']['name']))
+			{
+				$randno = rand();
+				$config['upload_path'] = 'uploads/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$config['file_name'] = $randno.$_FILES['iconimgae']['name'];
+                //Load upload library and initialize configuration
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('iconimgae')){
+					$uploadData = $this->upload->data();
+					$iconimgae = $uploadData['file_name'];
+				}
+			}else{
+				$iconimgae = $oldiconimgae;
+			}
+			$data = array(
+				'pgid' => $pgid, 
+				'metaname' => $metaname, 
+				'metadesc' => $metadesc, 
+				'title' => $title, 
+				'iconimgae' => $iconimgae, 
+				'description' => $description 
+			);
+			if($oldid==0)
+			{
+				$this->db->insert('pgcontent',$data);
+				$this->session->set_flashdata('msg', 'Content updated successfully');
+				redirect('admin/pagelist');
+			}else{
+				$this->db->where('id',$oldid);
+				$this->db->update('pgcontent',$data);
+				$this->session->set_flashdata('msg', 'Content deleted successfully');
+				redirect('admin/pagelist');
+			}
+
+		}
+	}
+
+
+	// page content end //
+
+	// create new page //
+	public function pagelist()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['res'] = $this->db->query("select * from pages where id >5 ")->result_array();
+		$this->load->view('admin/master/pages/pagelist',$data);
+		$this->load->view('admin/includes/footer');
+	}
+	
+	public function createpage()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$this->load->view('admin/master/pages/createpage');
+		$this->load->view('admin/includes/footer');
+	}
+	
+	public function pagesave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		if($this->input->post('save'))
+		{
+			$pgname = trim($this->input->post('pgname'));
+			$homepgshowing = trim($this->input->post('homepgshowing'));
+			// create slug url //
+			$smalltxt = strtolower($pgname);
+			$slug = preg_replace('#[ -]+#', '-', $smalltxt);
+
+			$pgurl = trim($slug);
+			$oldid = trim($this->input->post('oldid'));
+			$data = array(
+				'pgname' => $pgname, 
+				'pgurl' => $pgurl, 
+				'homepgshowing' => $homepgshowing
+			);
+			if($oldid==0)
+			{
+				$this->db->insert('pages',$data);
+				$this->session->set_flashdata('msg','Content updated successfully');
+				redirect('admin/createpage');
+			}else{
+				$this->db->where('id',$oldid);
+				$this->db->update('pages',$data);
+				$this->session->set_flashdata('msg','Content deleted successfully');
+				redirect('admin/pagelist');
+			}
+
+		}else{
+			$id = $this->uri->segment(4);
+			$data['res'] = $this->db->query("select * from pages where id='".$id."'")->result_array();
+			$this->load->view('admin/includes/header');
+			$this->load->view('admin/includes/aside');
+			$this->load->view('admin/master/pages/createpage',$data);
+			$this->load->view('admin/includes/footer');
+
+		}
+	}
+
+	
+
+	public function pagedelete()
+	{
+		$id = $this->uri->segment(4);
+		$this->db->where('id',$id);
+		$this->db->delete('pages');
+		$this->session->set_flashdata('del', 'Page deleted successfully');
+		redirect('admin/pagelist');
+	}
+
+
+
+	// create page end //
+
+	//pgbanner //
+	
+	public function pgbannerlist()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['res'] = $this->db->query("select * from pgbanner ")->result_array();
+		$this->load->view('admin/master/pages/pgbannerlist',$data);
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function pgbanneradd()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$this->load->view('admin/master/pages/pgbanneradd');
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function pgbannersave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		if($this->input->post('save'))
+		{
+			$title = trim($this->input->post('title'));
+			$description = trim($this->input->post('description'));
+			$bannerurl = trim($this->input->post('bannerurl'));
+			$pgid = trim($this->input->post('pgid'));
+			$oldid = trim($this->input->post('oldid'));
+			$oldiconimgae = trim($this->input->post('oldiconimgae'));
+			
+			if(!empty($_FILES['iconimgae']['name']))
+			{
+				$randno = rand();
+				$config['upload_path'] = 'uploads/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif|webp';
+				$config['file_name'] = $randno.$_FILES['iconimgae']['name'];
+                //Load upload library and initialize configuration
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('iconimgae')){
+					$uploadData = $this->upload->data();
+					$iconimgae = $uploadData['file_name'];
+				}
+			}else{
+				$iconimgae = $oldiconimgae;
+			}
+			$data = array(
+				'iconimgae' => $iconimgae, 
+				'pgid' => $pgid, 
+				'bannerurl' => $bannerurl, 
+				'description' => $description, 
+				'title' => $title 
+			);
+			if($oldid==0)
+			{
+				$this->db->insert('pgbanner',$data);
+				$this->session->set_flashdata('msg', 'Content updated successfully');
+				redirect('admin/pgbanneradd');
+			}else{
+				$this->db->where('id',$oldid);
+				$this->db->update('pgbanner',$data);
+				$this->session->set_flashdata('msg', 'Content deleted successfully');
+				redirect('admin/pgbanner');
+			}
+
+		}else{
+			$id = $this->uri->segment(4);
+			$data['res'] = $this->db->query("select * from pgbanner where id='".$id."'")->result_array();
+			$this->load->view('admin/includes/header');
+			$this->load->view('admin/includes/aside');
+			$this->load->view('admin/master/pages/pgbanneradd',$data);
+			$this->load->view('admin/includes/footer');
+
+		}
+	}
+	
+	public function pgbannersavedelete()
+	{
+		$id = $this->uri->segment(4);
+		$this->db->where('id',$id);
+		$this->db->delete('pgbanner');
+		$this->session->set_flashdata('del', 'Content deleted successfully');
+		redirect('admin/pgbanner');
+	}
+
+
+
+
+
+
+
+	
+
+
+	// why  choose us //
+	
+	public function categorieslist()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['res'] = $this->db->query("select * from categories ")->result_array();
+		$data['pgconres'] = $this->db->query("select * from homepgsection where id='7' ")->result_array();
+		$this->load->view('admin/master/pages/categorieslist',$data);
+		$this->load->view('admin/includes/footer');
+	}
+
+
+	public function categoriesadd()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$this->load->view('admin/master/pages/categoriesadd');
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function categoriessave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		if($this->input->post('save'))
+		{
+			$title = trim($this->input->post('title'));
+			$description = trim($this->input->post('description'));
+			$ispopular = trim($this->input->post('ispopular'));
+
+
+		  // create slug url //
+		      $smalltxt = strtolower($title);
+		      $slug = preg_replace('#[ -]+#', '-', $smalltxt);
+		      $slugurl = trim($slug);
+		  // slug url end //  
+
+			$oldid = trim($this->input->post('oldid'));
+			$data = array(
+				'description' => $description,
+				'slugurl' => $slugurl, 
+				'title' => $title ,
+				'ispopular' => $ispopular
+			);
+			if($oldid==0)
+			{
+				$this->db->insert('categories',$data);
+				$this->session->set_flashdata('msg', 'Content updated successfully');
+				redirect('admin/categoriesadd');
+			}else{
+				$this->db->where('id',$oldid);
+				$this->db->update('categories',$data);
+				$this->session->set_flashdata('msg', 'Content deleted successfully');
+				redirect('admin/categories');
+			}
+
+		}else{
+			$id = $this->uri->segment(4);
+			$data['res'] = $this->db->query("select * from categories where id='".$id."'")->result_array();
+			$this->load->view('admin/includes/header');
+			$this->load->view('admin/includes/aside');
+			$this->load->view('admin/master/pages/categoriesadd',$data);
+			$this->load->view('admin/includes/footer');
+
+		}
+	}
+	
+	public function categoriesdelete()
+	{
+		$id = $this->uri->segment(4);
+		$this->db->where('id',$id);
+		$this->db->delete('categories');
+		$this->session->set_flashdata('del', 'Content deleted successfully');
+		redirect('admin/categories');
+	}
+
+	// what we offer //
+	
+	public function bloglist()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['pgconres'] = $this->db->query("select * from homepgsection where id='4' ")->result_array();
+		$data['res'] = $this->db->query("select * from blog ")->result_array();
+		$this->load->view('admin/master/pages/bloglist',$data);
+		$this->load->view('admin/includes/footer');
+	}
+
+
+	public function blogadd()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$this->load->view('admin/master/pages/blogadd');
+		$this->load->view('admin/includes/footer');
+	}
+
+
+
+	public function blogsave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		if($this->input->post('save'))
+		{
+			$title = trim($this->input->post('title'));
+			$iconlogo = trim($this->input->post('iconlogo'));
+
+		  // create slug url //
+		      $smalltxt = strtolower($title);
+		      $slug = preg_replace('#[ -]+#', '-', $smalltxt);
+		      $slugurl = trim($slug);
+		  // slug url end //  
+
+			$shortdesc = trim($this->input->post('shortdesc'));
+			$tag = trim($this->input->post('tag'));
+			// create slug url //
+		      $smalltxt = strtolower($tag);
+		      $slug = preg_replace('#[ -]+#', '-', $smalltxt);
+		      $tagurl = trim($slug);
+		  // slug url end //  
+
+			$description = trim($this->input->post('description'));
+			$oldid = trim($this->input->post('oldid'));
+			$oldiconlogo = trim($this->input->post('oldiconlogo'));
+			$oldfeatureimg = trim($this->input->post('oldfeatureimg'));
+			$isfeatured = trim($this->input->post('isfeatured'));
+			
+			if(!empty($_FILES['featureimg']['name'] ))
+			{
+				$randno = rand();
+				$config['upload_path'] = 'uploads/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$config['file_name'] = $randno.$_FILES['featureimg']['name'];
+                //Load upload library and initialize configuration
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('featureimg')){
+					$uploadData = $this->upload->data();
+					$featureimg = $uploadData['file_name'];
+				}
+			}else{
+				$featureimg = $oldfeatureimg;
+			}
+
+			if($this->input->post('catid'))
+			{
+			$catidcount = count($this->input->post('catid'));
+				for($i=0;$i<$catidcount;$i++)
+				{
+
+					$catidarr[] = $this->input->post('catid')[$i];
+
+				}
+				$catiddata = implode(',',$catidarr); 
+			}
+
+			$data = array(
+				'iconlogo' => $iconlogo, 
+				'featureimg' => $featureimg, 
+				'title' => $title, 
+				'shortdesc' => $shortdesc, 
+				'description' => $description ,
+				'slugurl' => $slugurl ,
+				'tagurl' => $tagurl ,
+				'catid' =>$catiddata,
+				'postdate'=> date('Y-m-d'),
+				'isfeatured' => $isfeatured
+			);
+
+			if($oldid==0)
+			{
+				$this->db->insert('blog',$data);
+				$this->session->set_flashdata('msg', 'Content updated successfully');
+				redirect('admin/blogadd');
+			}else{
+				$this->db->where('id',$oldid);
+				$this->db->update('blog',$data);
+				$this->session->set_flashdata('msg', 'Content deleted successfully');
+				redirect('admin/blogs');
+			}
+
+		}else{
+			$id = $this->uri->segment(4);
+			$data['res'] = $this->db->query("select * from blog where id='".$id."'")->result_array();
+			$this->load->view('admin/includes/header');
+			$this->load->view('admin/includes/aside');
+			$this->load->view('admin/master/pages/blogadd',$data);
+			$this->load->view('admin/includes/footer');
+
+		}
+	}
+	
+
+	public function blogdelete()
+	{
+		$id = $this->uri->segment(4);
+		$this->db->where('id',$id);
+		$this->db->delete('blog');
+		$this->session->set_flashdata('del', 'Content deleted successfully');
+		redirect('admin/blogs');
+	}
+
+
+
+
+
+	// why we best //
+	
+	public function whywebestlist()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['pgconres'] = $this->db->query("select * from homepgsection where id='3' ")->result_array();
+		$data['res'] = $this->db->query("select * from whywebest ")->result_array();
+		$this->load->view('admin/master/pages/whywebestlist',$data);
+		$this->load->view('admin/includes/footer');
+	}
+	public function whywebestlistadd()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$this->load->view('admin/master/pages/whywebestlistadd');
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function whywebestlistsave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		if($this->input->post('save'))
+		{
+			$title = trim($this->input->post('title'));
+			$description = trim($this->input->post('description'));
+			$oldid = trim($this->input->post('oldid'));
+			$oldiconimgae = trim($this->input->post('oldiconimgae'));
+			
+			if(!empty($_FILES['iconimgae']['name']))
+			{
+				$randno = rand();
+				$config['upload_path'] = 'uploads/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$config['file_name'] = $randno.$_FILES['iconimgae']['name'];
+                //Load upload library and initialize configuration
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('iconimgae')){
+					$uploadData = $this->upload->data();
+					$iconimgae = $uploadData['file_name'];
+				}
+			}else{
+				$iconimgae = $oldiconimgae;
+			}
+			$data = array(
+				'iconimgae' => $iconimgae, 
+				'description' => $description, 
+				'title' => $title 
+			);
+			if($oldid==0)
+			{
+				$this->db->insert('whywebest',$data);
+				$this->session->set_flashdata('msg', 'Content updated successfully');
+				redirect('admin/whywebestlistadd');
+			}else{
+				$this->db->where('id',$oldid);
+				$this->db->update('whywebest',$data);
+				$this->session->set_flashdata('msg', 'Content deleted successfully');
+				redirect('admin/whywebest');
+			}
+
+		}else{
+			$id = $this->uri->segment(4);
+			$data['res'] = $this->db->query("select * from whywebest where id='".$id."'")->result_array();
+			$this->load->view('admin/includes/header');
+			$this->load->view('admin/includes/aside');
+			$this->load->view('admin/master/pages/whywebestlistadd',$data);
+			$this->load->view('admin/includes/footer');
+
+		}
+	}
+
+	public function whywebestlistdelete()
+	{
+		$id = $this->uri->segment(4);
+		$this->db->where('id',$id);
+		$this->db->delete('whywebest');
+		$this->session->set_flashdata('del', 'Content deleted successfully');
+		redirect('admin/whywebest');
+	}
+
+
+	// multi services //
+	
+	public function multiserviceslist()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['res'] = $this->db->query("select * from multiservices ")->result_array();
+		$this->load->view('admin/master/pages/multiserviceslist',$data);
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function multiserviceadd()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$this->load->view('admin/master/pages/multiserviceadd');
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function multiservicesave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		if($this->input->post('save'))
+		{
+			$servicename = trim($this->input->post('servicename'));
+			$description = trim($this->input->post('description'));
+			$oldid = trim($this->input->post('oldid'));
+			$oldiconimgae = trim($this->input->post('oldiconimgae'));
+			$oldfeatureimg = trim($this->input->post('oldfeatureimg'));
+
+			$smalltxt = strtolower($servicename);
+			$slug = preg_replace('#[ -]+#', '-', $smalltxt);
+
+			if(!empty($_FILES['iconimgae']['name']))
+			{
+				$randno = rand();
+				$config['upload_path'] = 'uploads/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$config['file_name'] = $randno.$_FILES['iconimgae']['name'];
+                //Load upload library and initialize configuration
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('iconimgae')){
+					$uploadData = $this->upload->data();
+					$iconimgae = $uploadData['file_name'];
+				}
+			}else{
+				$iconimgae = $oldiconimgae;
+			}
+			if(!empty($_FILES['featureimg']['name'] ))
+			{
+				$randno = rand();
+				$config['upload_path'] = 'uploads/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$config['file_name'] = $randno.$_FILES['featureimg']['name'];
+                //Load upload library and initialize configuration
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('featureimg')){
+					$uploadData = $this->upload->data();
+					$featureimg = $uploadData['file_name'];
+				}
+			}else{
+				$featureimg = $oldfeatureimg;
+			}
+			$data = array(
+				'iconimgae' => $iconimgae, 
+				'featureimg' => $featureimg, 
+				'servicename' => $servicename, 
+				'url' => $slug, 
+				'description' => $description
+			);
+			if($oldid==0)
+			{
+				$this->db->insert('multiservices',$data);
+				$this->session->set_flashdata('msg', 'Content updated successfully');
+				redirect('admin/multiserviceadd');
+			}else{
+				$this->db->where('id',$oldid);
+				$this->db->update('multiservices',$data);
+				$this->session->set_flashdata('msg', 'Content deleted successfully');
+				redirect('admin/multiservices');
+			}
+
+		}else{
+			$id = $this->uri->segment(4);
+			$data['res'] = $this->db->query("select * from multiservices where id='".$id."'")->result_array();
+			$this->load->view('admin/includes/header');
+			$this->load->view('admin/includes/aside');
+			$this->load->view('admin/master/pages/multiserviceadd',$data);
+			$this->load->view('admin/includes/footer');
+
+		}
+	}
+	public function multiservicedelete()
+	{
+		$id = $this->uri->segment(4);
+		$this->db->where('id',$id);
+		$this->db->delete('multiservices');
+		$this->session->set_flashdata('del', 'Content deleted successfully');
+		redirect('admin/multiservices');
+	}
+
+
+
+
+
+	// partner start //
+	public function partnerlist()
+	{
+
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['pgconres'] = $this->db->query("select * from homepgsection where id='5' ")->result_array();
+		$data['res'] = $this->db->query("select * from partner ")->result_array();
+		$this->load->view('admin/master/pages/partnerlist',$data);
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function partneradd()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$this->load->view('admin/master/pages/partneradd');
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function partnersave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		if($this->input->post('save'))
+		{
+			$compnyname = trim($this->input->post('compnyname'));
+			$oldid = trim($this->input->post('oldid'));
+			$oldiconimgae = trim($this->input->post('oldiconimgae'));
+			
+			if(!empty($_FILES['iconimgae']['name']))
+			{
+				$randno = rand();
+				$config['upload_path'] = 'uploads/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif_webp';
+				$config['file_name'] = $randno.$_FILES['iconimgae']['name'];
+                //Load upload library and initialize configuration
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('iconimgae')){
+					$uploadData = $this->upload->data();
+					$iconimgae = $uploadData['file_name'];
+				}
+			}else{
+				$iconimgae = $oldiconimgae;
+			}
+			$data = array(
+				'iconimgae' => $iconimgae, 
+				'compnyname' => $compnyname, 
+			);
+			if($oldid==0)
+			{
+				$this->db->insert('partner',$data);
+				$this->session->set_flashdata('msg', 'Content updated successfully');
+				redirect('admin/partneradd');
+			}else{
+				$this->db->where('id',$oldid);
+				$this->db->update('partner',$data);
+				$this->session->set_flashdata('msg', 'Content deleted successfully');
+				redirect('admin/partner');
+			}
+
+		}else{
+			$id = $this->uri->segment(4);
+			$data['res'] = $this->db->query("select * from partner where id='".$id."'")->result_array();
+			$this->load->view('admin/includes/header');
+			$this->load->view('admin/includes/aside');
+			$this->load->view('admin/master/pages/partneradd',$data);
+			$this->load->view('admin/includes/footer');
+
+		}
+	}
+
+	public function partnerdelete()
+	{
+		$id = $this->uri->segment(4);
+		$this->db->where('id',$id);
+		$this->db->delete('partner');
+		$this->session->set_flashdata('del', 'Content deleted successfully');
+		redirect('admin/partner');
+	}
+	// partner end //
+
+
+
+	// booking process start 
+
+	public function bookprocesslist()
+	{
+
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['res'] = $this->db->query("select * from bookingstep ")->result_array();
+		$this->load->view('admin/master/pages/bookprocesslist',$data);
+		$this->load->view('admin/includes/footer');
+	}
+	public function homecms()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$data['res'] = $this->db->query("select * from homecms where id='1'")->result_array();
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$this->load->view('admin/master/pages/homecms',$data);
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function homecmssave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		if($this->input->post('save'))
+		{
+			$stepno = trim($this->input->post('stepno'));
+			$steptitle = trim($this->input->post('steptitle'));
+			$stepdesc = trim($this->input->post('stepdesc'));
+
+
+			$metaname = trim($this->input->post('metaname'));
+			$metatag = trim($this->input->post('metatag'));
+			$metatitle = trim($this->input->post('metatitle'));
+			$metadescription = trim($this->input->post('metadescription'));
+
+			$content1 = trim($this->input->post('content1'));
+			$content2 = trim($this->input->post('content2'));
+			$content3 = trim($this->input->post('content3'));
+
+			$button1 = trim($this->input->post('button1'));
+			$link1 = trim($this->input->post('link1'));
+
+			$button2 = trim($this->input->post('button2'));
+			$link2 = trim($this->input->post('link2'));
+
+			$oldid = trim($this->input->post('oldid'));
+			$oldiconimgae = trim($this->input->post('oldiconimgae'));
+
+			
+			if(!empty($_FILES['iconimgae']['name']))
+			{
+				$randno = rand();
+				$config['upload_path'] = 'uploads/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$config['file_name'] = $randno.$_FILES['iconimgae']['name'];
+                //Load upload library and initialize configuration
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('iconimgae')){
+					$uploadData = $this->upload->data();
+					$iconimgae = $uploadData['file_name'];
+				}
+			}else{
+				$iconimgae = $oldiconimgae;
+			}
+			$data = array(
+				'iconimgae' => $iconimgae, 
+				'stepno' => $stepno, 
+				'steptitle' => $steptitle, 
+				'stepdesc' => $stepdesc, 
+				'metaname' => $metaname, 
+				'metatag' => $metatag, 
+				'metatitle' => $metatitle, 
+				'metadescription' => $metadescription, 
+				'content1' => $content1, 
+				'content2' => $content2, 
+				'content3' => $content3, 
+				'button1' => $button1, 
+				'link1' => $link1, 
+				'button2' => $button2, 
+				'link2' => $link2 
+
+			);
+			
+				$this->db->where('id','1');
+				$this->db->update('homecms',$data);
+				$this->session->set_flashdata('msg', 'Content updated successfully');
+				redirect('admin/homecms');
+		
+
+		}else{
+			$data['res'] = $this->db->query("select * from homecms where id='1'")->result_array();
+			$this->load->view('admin/includes/header');
+			$this->load->view('admin/includes/aside');
+			$this->load->view('admin/master/pages/homecms',$data);
+			$this->load->view('admin/includes/footer');
+
+		}
+	}
+
+	public function bookprocesssdelete()
+	{
+		$id = $this->uri->segment(4);
+		$this->db->where('id',$id);
+		$this->db->delete('bookingstep');
+		$this->session->set_flashdata('del', 'Content deleted successfully');
+		redirect('admin/bookprocess');
+	}
+
+
+	// booking processend //
+
+
+
+
+
+		// our mission start //
+
+
+	public function ourmissionlist()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['res'] = $this->db->query("select * from ourmission ")->result_array();
+		$this->load->view('admin/master/pages/ourmissionlist',$data);
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function ourmissionadd()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$this->load->view('admin/master/pages/ourmissionadd');
+		$this->load->view('admin/includes/footer');
+
+	}
+
+	public function ourmissionsave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		if($this->input->post('save'))
+		{
+			$missiontitle = trim($this->input->post('missiontitle'));
+			$missiondesc = trim($this->input->post('missiondesc'));
+			$oldid = trim($this->input->post('oldid'));
+			$oldiconimgae = trim($this->input->post('oldiconimgae'));
+
+			
+			if(!empty($_FILES['iconimgae']['name']))
+			{
+				$randno = rand();
+				$config['upload_path'] = 'uploads/';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$config['file_name'] = $randno.$_FILES['iconimgae']['name'];
+                //Load upload library and initialize configuration
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				if($this->upload->do_upload('iconimgae')){
+					$uploadData = $this->upload->data();
+					$iconimgae = $uploadData['file_name'];
+				}
+			}else{
+				$iconimgae = $oldiconimgae;
+			}
+			$data = array(
+				'iconimgae' => $iconimgae, 
+				'missiontitle' => $missiontitle, 
+				'missiondesc' => $missiondesc, 
+			);
+			if($oldid==0)
+			{
+				$this->db->insert('ourmission',$data);
+				$this->session->set_flashdata('msg', 'Content updated successfully');
+				redirect('admin/ourmissionadd');
+			}else{
+				$this->db->where('id',$oldid);
+				$this->db->update('ourmission',$data);
+				$this->session->set_flashdata('msg', 'Content updated successfully');
+				redirect('admin/ourmission');
+			}
+
+		}else{
+			$id = $this->uri->segment(4);
+			$data['res'] = $this->db->query("select * from ourmission where id='".$id."'")->result_array();
+			$this->load->view('admin/includes/header');
+			$this->load->view('admin/includes/aside');
+			$this->load->view('admin/master/pages/ourmissionadd',$data);
+			$this->load->view('admin/includes/footer');
+
+		}
+	}
+
+	public function ourmissiondelete()
+	{
+		$id = $this->uri->segment(4);
+		$this->db->where('id',$id);
+		$this->db->delete('ourmission');
+		$this->session->set_flashdata('del', 'Content deleted successfully');
+		redirect('admin/ourmission');
+	}
+
+		// our mission end //
+
+
+
+
+	//service cms//
+	public function serviceadd()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['res'] = $this->db->query("select * from  servicemain where id='1'")->result_array();
+		$this->load->view('admin/master/pages/serviceadd',$data);
+		$this->load->view('admin/includes/footer');
+	}
+	public function servicesave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		if($this->input->post('save'))
+		{
+			$metaname = trim($this->input->post('metaname'));
+			$metadesc = trim($this->input->post('metadesc'));
+			$iconimgae = trim($this->input->post('iconimgae'));
+			$contenthead1 = trim($this->input->post('contenthead1'));
+			$contentdesc1 = trim($this->input->post('contentdesc1'));
+			$contenthead2 = trim($this->input->post('contenthead2'));
+			$contentdesc2 = trim($this->input->post('contentdesc2'));
+			$contenthead3 = trim($this->input->post('contenthead3'));
+			$contentdesc3 = trim($this->input->post('contentdesc3'));
+			$oldid = trim($this->input->post('oldid'));
+
+			$data = array(
+				'metaname' => $metaname, 
+				'metadesc' => $metadesc, 
+				'iconimgae' => $iconimgae, 
+				'contenthead1' => $contenthead1, 
+				'contentdesc1' => $contentdesc1, 
+				'contenthead2' => $contenthead2, 
+				'contentdesc2' => $contentdesc2, 
+				'contenthead3' => $contenthead3, 
+				'contentdesc3' => $contentdesc3 
+			);
+			
+				$this->db->where('id',$oldid);
+				$this->db->update('servicemain',$data);
+				$this->session->set_flashdata('msg', 'Content updated successfully');
+				redirect('admin/service');
+
+		}
+
+	}
+
+
+	// how to book start //
+
+	public function howtobookadd()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['res'] = $this->db->query("select * from howtobook where id='1'")->result_array();
+		$this->load->view('admin/master/pages/howtobook',$data);
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function howtobooksave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+
+		if($this->input->post('save'))
+		{
+			$metaname = trim($this->input->post('metaname'));
+			$metadesc = trim($this->input->post('metadesc'));
+			$heading = trim($this->input->post('heading'));
+			$description = trim($this->input->post('description'));
+			$data = array(
+				'metaname' => $metaname, 
+				'metadesc' => $metadesc, 
+				'heading' => $heading,
+				'description' => $description
+			);
+			$this->db->where('id','1');
+			$this->db->update('howtobook',$data);
+			$this->session->set_flashdata('msg', 'Content updated successfully');
+			redirect('admin/howtobook');
+		}
+	}
+	// how to book end //
+
+
+	// support start //
+
+	public function supportadd()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['res'] = $this->db->query("select * from support where id='1'")->result_array();
+		$this->load->view('admin/master/pages/supportadd',$data);
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function supportsave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+
+		if($this->input->post('save'))
+		{
+			$metaname = trim($this->input->post('metaname'));
+			$metadesc = trim($this->input->post('metadesc'));
+			$contentheadfirst = trim($this->input->post('contentheadfirst'));
+			$contentfirst = trim($this->input->post('contentfirst'));
+			$contentheadsecond = trim($this->input->post('contentheadsecond'));
+			$contentsecond = trim($this->input->post('contentsecond'));
+			$data = array(
+				'metaname' => $metaname, 
+				'metaname' => $metaname, 
+				'contentheadfirst' => $contentheadfirst, 
+				'contentfirst' => $contentfirst,
+				'contentheadsecond' => $contentheadsecond,
+				'contentsecond' => $contentsecond
+
+			);
+			$this->db->where('id','1');
+			$this->db->update('support',$data);
+			$this->session->set_flashdata('msg', 'Content updated successfully');
+			redirect('admin/support');
+		}
+	}
+
+	// support end //
+
+	//contact start //
+
+	public function contactadd()
+	{	
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		$this->load->view('admin/includes/header');
+		$this->load->view('admin/includes/aside');
+		$data['res'] = $this->db->query("select * from contactpg where id='1';")->result_array();
+		$this->load->view('admin/master/pages/contactadd',$data);
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function contactsave()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('admin');
+		}
+		if($this->input->post('save'))
+		{
+			$metaname = trim($this->input->post('metaname'));
+			$metadesc = trim($this->input->post('metadesc'));
+			$pgtitle = trim($this->input->post('pgtitle'));
+			$mapiframe = trim($this->input->post('mapiframe'));
+			$address = trim($this->input->post('address'));
+			$contactinfo = trim($this->input->post('contactinfo'));
+			$contentarea2 = trim($this->input->post('contentarea2'));
+			$email = trim($this->input->post('email'));
+			$fburl = trim($this->input->post('fburl'));
+			$twitterurl = trim($this->input->post('twitterurl'));
+			$instaurl = trim($this->input->post('instaurl'));
+
+			$data = array(
+				'metaname' => $metaname, 
+				'metadesc' => $metadesc, 
+				'pgtitle' => $pgtitle, 
+				'mapiframe' => $mapiframe, 
+				'address' => $address, 
+				'contactinfo' => $contactinfo, 
+				'contentarea2' => $contentarea2,
+				'email' => $email,
+				'fburl' => $fburl,
+				'twitterurl' => $twitterurl,
+				'instaurl' => $instaurl
+
+			);
+			$this->db->where('id','1');
+			$this->db->update('contactpg',$data);
+			$this->session->set_flashdata('msg', 'Content updated successfully');
+			redirect('admin/contact');
+
+		}
+	}
+
+	//contact end //
+
+}

@@ -1,0 +1,186 @@
+<?php
+if(isset($res)) {
+	$metatitle = $res[0]['metatitle'];
+	$id = $res[0]['id'];
+	$metadesc = $res[0]['metadesc'];
+	$iconlogo = $res[0]['iconlogo'];
+	$featureimg = $res[0]['featureimg'];
+	$title = $res[0]['title'];
+	$shortdesc = $res[0]['shortdesc'];
+	$description = $res[0]['description'];
+	$tag = $res[0]['tag'];
+	$catid = $res[0]['catid'];
+	$isfeatured = $res[0]['isfeatured'];
+	$iseditorpick = $res[0]['iseditorpick'];
+	$catidexplode = explode(',',$catid);
+} else {
+	$id = "0";
+	$metatitle = "";
+	$metadesc = "";
+	$iconlogo = "";
+	$featureimg = "";
+	$title = "";
+	$shortdesc = "";
+	$description = "";
+	$tag = "";
+	$catid = "";
+	$catidexplode = "";
+	$isfeatured = "";
+	$iseditorpick = "";
+
+}
+?>
+
+<div class="content-wrapper mt-3">
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+			<!-- form start -->
+			<form name="" action="<?php echo base_url()?>admin/Managepage/blogsave" method="post" 
+				enctype="multipart/form-data">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card card-primary">
+							<div class="card-header">
+								<h3 class="card-title">Create Post</h3>
+							</div>
+
+							<?php if($this->session->flashdata('msg')): ?>
+							<div class="alert alert-success" role="alert" style="margin-top: 25px;">
+								<?php echo $this->session->flashdata('msg'); ?>
+								</div>
+							<?php endif; ?>
+							<div class="card-body">
+								<input type="hidden" name="oldid" value="<?=$id?>">
+								<input type="hidden" name="oldiconlogo" value="<?=$iconlogo?>">
+								<input type="hidden" name="oldfeatureimg" value="<?=$featureimg?>">
+
+
+								<div class="col-12">
+									<div class="form-group">
+										<label for="title">Title<span class=" ">*</span></label>
+										<input type="text" required name="title" class="form-control" id="title" 
+										value="<?=$title?>">
+									</div>
+								</div>
+
+								<div class="col-12">
+									<div class="form-group">
+										<label for="title">Meta Title<span class=" ">*</span></label>
+										<input type="text"  name="metatitle" class="form-control" id="title" 
+										value="<?=$metatitle?>">
+									</div>
+								</div>
+
+								<div class="col-12">
+									<div class="form-group">
+										<label for="title">Meat Description<span class=" ">*</span></label>
+										<textarea name="metadesc" class="form-control"><?=$metadesc?></textarea>
+									</div>
+								</div>
+
+
+
+								<div class="col-12">
+									<div class="col-6">
+										<div class="form-group">
+										<label for="featureimg">
+									<?php if($featureimg!="") { ?>
+										Change Feature Image
+										<?php }else{?>
+											Upload Feature Image
+										<?php } ?>
+											
+											<span class=" ">*</span></label>
+										<input type="file"  name="featureimg" class="form-control" id="featureimg">
+										</div>
+									</div>
+									<?php if($featureimg!="") { ?>
+									<div class="col-6">
+										<img height="50px" width="50px" src="<?=base_url();?>uploads/<?=$featureimg?>">
+									</div>
+									<?php } ?>
+									
+								</div>
+
+
+								<div class="col-12">
+									<div class="form-group">
+										<label for="featured" style="color: red">Headlines</label>
+										<input type="checkbox" name="isfeatured" value="1"
+										<?php if($isfeatured=="1"){echo "checked"; } ?>>
+									</div>
+								</div>
+
+								<div class="col-12">
+									<div class="form-group">
+										<label for="featured">Editor's Pick</label>
+										<input type="checkbox" name="iseditorpick" value="1"
+										<?php if($iseditorpick=="1"){echo "checked"; } ?>>
+									</div>
+								</div>
+
+
+								
+
+								<div class="col-12">
+									<div class="form-group">
+										<label for="description">Desciprtion<span class=" ">*</span></label>
+										<textarea name="description" required class="form-control editor" id="description" 
+										value="<?=$description?>"><?=$description?></textarea>
+									</div>
+								</div>
+
+								<div class="col-12">
+									<div class="form-group">
+										<label for="shortdesc">Excerpt<span class=" ">*</span></label>
+										<textarea name="shortdesc" class="form-control" id="shortdesc" 
+										value="<?=$shortdesc?>"><?=$shortdesc?></textarea>
+									</div>
+								</div>
+
+								<div class="col-12">
+									<div class="form-group">
+										<label for="shortdesc">Tag</label>
+										<input type="text" class="form-control" name="tag" value="<?=$tag?>" placeholder="Tags by comma(',')">
+									</div>
+								</div>
+
+
+								<?php
+								//print_r($catidexplode);
+								
+									
+
+								?>
+								<div class="col-12">
+									<div class="form-group">
+										<label for="shortdesc">Categories</label><br/>
+										<?php
+										$catres = $this->db->query("select * from categories")->result_array();
+										foreach($catres as $catrows) {
+										?>
+										<input type="checkbox" name="catid[]" 
+										<?php 
+										if(!empty($catidexplode)) {
+										foreach($catidexplode as $drows){
+										if($catrows['id']==$drows) {echo "checked"; } 
+										} }
+										?> 
+										 value="<?=$catrows['id']?>"><?=$catrows['title'];?><br/>
+									<?php } ?>
+									</div>
+								</div>
+
+								<div class="col-6">
+									<input type="submit" class="btn btn-primary" name="save">
+								</div>
+							</div> <!-- /.card-body -->
+						</div> <!-- /.card -->
+					</div> <!-- /.col-md-12 -->
+				</div>
+			</form>
+		</div><!-- /.container-fluid -->
+	</section>
+</div><!-- /.content-wrapper -->

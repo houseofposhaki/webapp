@@ -1,0 +1,205 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Tour extends CI_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('Tourmodel');
+	}
+
+	public function index()
+	{
+
+	}
+	
+
+	public function add()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('');
+		}
+		$this->load->view('includes/header');
+		$this->load->view('includes/aside');
+		$this->load->view('master/tour/touradd');
+		$this->load->view('includes/footer');
+	}
+
+	public function list()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('');
+		}
+		$userid = $this->session->userdata['logged_in']['id'];
+		if($userid=="1" || $userid=="2"){
+			$data['res']=$this->Tourmodel->get_tour_list();
+		} else {
+			//$data['res']=$this->Tourmodel->get_tour_list_byuserid($userid);
+			$data['res']=$this->Tourmodel->get_tour_list();
+		}
+
+		$this->load->view('includes/header');
+		$this->load->view('includes/aside');
+		$this->load->view('master/tour/tourlist',$data);
+		$this->load->view('includes/footer');
+	}
+
+	public function details()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('');
+		}
+		$tourid = $this->uri->segment(3);
+		$data['res'] = $this->Tourmodel->get_tour_details($tourid);
+		$data['itinerary'] = $this->Tourmodel->get_itinerary_details($tourid);
+		$this->load->view('includes/header');
+		$this->load->view('includes/aside');
+		$this->load->view('master/tour/tourdetails',$data);
+		$this->load->view('includes/footer');
+	}
+
+	public function save()
+	{
+		if($this->session->userdata['logged_in']['id']!=true){
+			redirect('');
+		}
+		if($this->input->post('submit'))
+		{
+			$oldid = $this->input->post('oldid');
+			$userid = $this->input->post('userid');
+			$createdate = date('Y-m-d');
+			$pkgname = $this->input->post('pkgname');
+			$tourtype = $this->input->post('tourtype');
+			$tourcategory = $this->input->post('tourcategory');
+			$pkgday = $this->input->post('pkgday');
+			$pkgnight = $this->input->post('pkgnight');
+			$departuredate = $this->input->post('departuredate');
+			$hub = $this->input->post('hub');
+			$othershub = $this->input->post('othershub');
+			$pkgdesc = $this->input->post('pkgdesc');
+			$hoteldetails = $this->input->post('hoteldetails');
+			$inclexclusion = $this->input->post('inclexclusion');
+			$flightdetails = $this->input->post('flightdetails');
+			$visadetails = $this->input->post('visadetails');
+			$refurl = $this->input->post('refurl');
+			$totaltourcost = $this->input->post('totaltourcost');
+
+			// child table (itineryday) data post //
+			$itineryday = $this->input->post('itineryday');
+			$itinerytitle = $this->input->post('itinerytitle');
+			$itinerydesc = $this->input->post('itinerydesc');
+
+			//tourprice data post //
+			$roomsize = $this->input->post('roomsize');
+			$priceinr = $this->input->post('priceinr');
+			$pricecurrency = $this->input->post('pricecurrency');
+			$pricefcy = $this->input->post('pricefcy');
+			
+
+			$data = array(
+				'userid' => $userid,
+				'createdate' => $createdate,
+				'pkgname' => $pkgname,
+				'tourtype' => $tourtype,
+				'tourcategory' => $tourcategory,
+				'pkgday' => $pkgday,
+				'pkgnight' => $pkgnight,
+				'departuredate' => $departuredate,
+				'hub' => $hub,
+				'othershub' => $othershub,
+				'pkgdesc' => $pkgdesc,
+				'hoteldetails' => $hoteldetails,
+				'inclexclusion' => $inclexclusion,
+				'flightdetails' => $flightdetails,
+				'visadetails' => $visadetails,
+				'refurl' => $refurl,
+				'totaltourcost' => $totaltourcost
+			);
+			if($oldid==0) {
+				$this->db->insert('tourpackage',$data);
+				$insert_id = $this->db->insert_id();
+
+				//itinery insert //
+				$count=count($this->input->post("rowid"));
+				for($j=0;$j<$count;$j++){
+					$dataitinery = array(
+						'pkgid' => $insert_id,
+						'itineryday' => $itineryday[$j],
+						'itinerytitle' => $itinerytitle[$j],
+						'itinerydesc' => $itinerydesc[$j]
+					);
+					$this->db->insert('itinery',$dataitinery);
+				}
+
+				// tour price insert //
+				$count1=count($this->input->post("rowid1"));
+				for($j=0;$j<$count1;$j++){
+					$dataprice= array(
+						'tourid' => $insert_id,
+						'roomsize' => $roomsize[$j],
+						'priceinr' => $priceinr[$j],
+						'pricecurrency' => $pricecurrency[$j],
+						'pricefcy' => $pricefcy[$j]
+					);
+					$this->db->insert('tourprice',$dataprice);
+				}
+
+
+				redirect('tours');
+			} else {
+				$count1=count($this->input->post("rowid1"));
+				for($j=0;$j<$count1;$j++){
+					$dataprice= array(
+						'tourid' => $oldid,
+						'roomsize' => $roomsize[$j],
+						'priceinr' => $priceinr[$j],
+						'pricecurrency' => $pricecurrency[$j],
+						'pricefcy' => $pricefcy[$j]
+					);
+				}	
+
+				$this->db->where('id',$oldid);
+				$this->db->update('tourpackage',$data);
+
+
+				$this->db->where('tourid',$oldid);
+				$this->db->update('tourprice',$dataprice);	
+
+
+
+				/*$dataitinery = array(
+					'itineryday' => $itineryday,
+					'itinerytitle' => $itinerytitle,
+					'itinerydesc' => $itinerydesc
+				);
+				$this->db->where('pkgid',$oldid);
+				$this->db->update('itinery',$dataitinery);*/
+				redirect('tours');
+			}
+		}
+
+		$editid = $this->uri->segment(3);
+		
+		$data['editdata'] = $this->Tourmodel->get_edit_data($editid);
+		$this->load->view('includes/header');
+		//$this->load->view('includes/aside');
+		$this->load->view('master/tour/touradd',$data);
+		$this->load->view('includes/footer');
+	}
+
+	public function delete()
+	{
+		$id = $this->uri->segment(3);
+		$this->db->where('id',$id);
+		$this->db->delete('tourpackage');
+		redirect('tours');
+	}
+
+	// Ajax function //
+	public function fetch_hub()
+	{
+		$tourtypeval = $this->input->post('tourtypeval');
+		echo  $this->Tourmodel->fetch_hub_name($tourtypeval);
+	}
+}
